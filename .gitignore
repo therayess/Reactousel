@@ -1,0 +1,5 @@
+node_modules/*
+client/*bundle.js
+client/css/*
+.DS_Store
+npm-debug.log
