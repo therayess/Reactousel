@@ -1,7 +1,6 @@
 import React from 'react';
-import connector from './App';
 
-class MyCarousel extends React.Component {
+class Reactousel extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -38,13 +37,17 @@ class MyCarousel extends React.Component {
 			this.useKeyboard();
 		}
 	}
-	nextSlide() {
-		this.goToSlide(this.state.currentSlide + 1);
+	nextSlide(e) {
+		this.goToSlide(this.state.currentSlide + 1, e);
 	}
-	previousSlide() {
-		this.goToSlide(this.state.currentSlide - 1);
+	previousSlide(e) {
+		this.goToSlide(this.state.currentSlide - 1, e);
 	}
-	goToSlide(index) {
+	goToSlide(index, e) {
+		if (e && e.type == 'click') {
+			this.resetInterval();
+		}
+
 		this.setState({ currentSlide: (index + this.state.slides.length) % this.state.slides.length });
 	}
 	playSlideshow() {
@@ -55,8 +58,12 @@ class MyCarousel extends React.Component {
 
 		this.setState({ slideInterval: null, autoPlay: false });
 	}
+	resetInterval() {
+		this.pauseSlideshow();
+		this.playSlideshow();
+	}
 	pauseOnHover() {
-		let slides = document.querySelectorAll('#slides .slide'),
+		let slides = document.querySelectorAll('.reactousel .slide'),
 			self = this;
 
 		slides.forEach(function(slide) {
@@ -71,11 +78,11 @@ class MyCarousel extends React.Component {
 		    let charCode = e.keyCode;
 
 		    if (charCode == 37) {
-		        self.previousSlide();
+		        self.previousSlide({ type: 'click' });
 		    }
 
 		    if (charCode == 39) {
-		    	self.nextSlide();
+		    	self.nextSlide({ type: 'click' });
 		    }
 		};
 	}
@@ -91,7 +98,7 @@ class MyCarousel extends React.Component {
 	render() {
 		return (
 			<section>
-				<div id="slides">
+				<div className="reactousel">
 					<div className="slides-wrapper">
 						{this.state.slides.map((slide, index) => (
 							<div key={index} className={this.setClassName(index)}>
@@ -126,4 +133,4 @@ class MyCarousel extends React.Component {
 	}
 }
 
-module.exports = connector(MyCarousel);
+module.exports = Reactousel;

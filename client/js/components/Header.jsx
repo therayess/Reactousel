@@ -7,7 +7,7 @@ class Header extends React.Component {
         return (
             <header>
                 <div>
-                    <Link to='/'>My Carousel</Link>
+                    <Link to='/'>Reactousel</Link>
                     <div>By Ammar Rayess</div>
                 </div>
             </header>

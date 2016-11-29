@@ -1,7 +1,7 @@
 import React from 'react';
 import connector from './App';
 import data from '../data';
-import MyCarousel from './MyCarousel';
+import Reactousel from './Reactousel';
 
 class Landing extends React.Component {
 	constructor(props) {
@@ -14,7 +14,7 @@ class Landing extends React.Component {
 	render() {
 		return (
 			<section>
-				<MyCarousel data={this.state.data} 
+				<Reactousel data={this.state.data} 
 							autoPlay={true} 
 							pauseOnHover={true} 
 							useKeyboard={true} 

@@ -4,7 +4,7 @@
 @import "./vendor/font-awesome";
 @import "./vendor/animate";
 
-#slides {
+.reactousel {
     position: relative;
     height: 300px;
     padding: 0px;
@@ -37,19 +37,19 @@
 				left: 0;
 			}
 			&:nth-of-type(1) {
-			    background: red;
+			    background: #e91e63;
 			}
 			&:nth-of-type(2) {
-			    background: orange;
+			    background: #2196f3;
 			}
 			&:nth-of-type(3) {
-			    background: green;
+			    background: #cddc39;
 			}
 			&:nth-of-type(4) {
-			    background: blue;
+			    background: #ff5722;
 			}
 			&:nth-of-type(5) {
-			    background: purple;
+			    background: #f44336;
 			}
 		}
     }
