@@ -34,6 +34,7 @@ const baseTemplate = fs.readFileSync('./client/index.html')
 const template = _.template(baseTemplate)
 const clientRoutes = require('./client/js/route.js').route
 
+// Handling server side rendering using ReactDomServer.renderToString
 app.use((req, res) => {
   match({ routes: clientRoutes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {

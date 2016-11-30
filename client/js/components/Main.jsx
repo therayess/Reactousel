@@ -11,12 +11,15 @@ class Main extends React.Component {
 		}
 	}
 	componentWillMount() {
+		// On site load, get the data from the API 
 		this.props.getBrokersAction();
 	}
 	componentWillReceiveProps(nextProps) {
+		// I set a state here to load main site section when data is fetched and set
 		this.setState({ brokers: nextProps.brokers });
 	}
 	componentDidUpdate(prevProps) {
+		// Simple preloader to make things neat
 		if (this.props.brokers.length > 0) {
 			document.getElementById('preloader').remove();
 	    }
