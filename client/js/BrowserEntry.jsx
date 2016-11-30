@@ -1,6 +1,3 @@
-window.jQuery = require("jquery");
-window.$ = require("jquery");
-
 require('../sass/main.scss');
 
 const React = require('react');

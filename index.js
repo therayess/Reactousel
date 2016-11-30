@@ -6,11 +6,15 @@ var app = express();
 
 //requiring local modeles
 var configs = require('./config');
+var routes = require('./routes/routes');
 
 // parse application/x-www-form-urlencoded.
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json.
 app.use(bodyParser.json());
+
+//Initilizing routes.
+routes(app);
 
 // serve client side code.
 app.use('/',express.static('client'));

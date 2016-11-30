@@ -1,12 +1,9 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-/* Areas actions
-------------------------------------------------*/
-
 export function getBrokersAction(opts = {}) {
 	return function(dispatch, getState) {
-	    let url = "https://www.propertyfinder.ae/en/find-broker/ajax/search?page=1";
+	    let url = "/api/brokers";
 
 	    let	request = new Request(url, {
 				method: 'GET',
@@ -17,12 +14,10 @@ export function getBrokersAction(opts = {}) {
 			});
 
 		return fetch(request).then(function(result) {
-			console.log(result);
 			if (result.status === 200) {
 				return result.json();
 			}
 		}).then(function(jsonResult) {
-			console.log(jsonResult);
 			if (jsonResult.error) {
 				console.log(jsonResult.error);
 			}

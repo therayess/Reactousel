@@ -1,4 +1,5 @@
 import React from 'react';
+import RenderSlide from './RenderSlide';
 
 class Reactousel extends React.Component {
 	constructor(props) {
@@ -89,43 +90,61 @@ class Reactousel extends React.Component {
 	setClassName(index) {
 		let classString = 'slide';
 
-		if (this.state.currentSlide == index) classString += ' showing';
-		if (this.state.currentSlide + 1 == index) classString = 'slide left';
-		if (this.state.currentSlide - 1 == index) classString = 'slide right';
+		if (this.state.currentSlide == index) { classString += ' showing'; }
+		if (this.state.currentSlide < index) { classString += ' left'; }
+		if (this.state.currentSlide > index) { classString += ' right'; }
 
 		return classString;
 	}
 	render() {
 		return (
-			<section>
-				<div className="reactousel">
-					<div className="slides-wrapper">
-						{this.state.slides.map((slide, index) => (
-							<div key={index} className={this.setClassName(index)}>
-								{slide}
+			<section className="full">
+				{this.state.slides.length > 0 ? 
+					<div className="reactousel-container">
+						<div className="reactousel">
+							<div className="slides-wrapper">
+								{this.state.slides.map((slide, index) => (
+									<div key={index} className={this.setClassName(index)}>
+										<RenderSlide slide={slide} />
+									</div>
+								))}
 							</div>
-						))}
-					</div>
 
-					{this.state.indicators ? 
-						<div className="indicators">
-							{this.state.slides.map((slide, index) => (
-								<a href="#" key={index} className={this.state.currentSlide == index ? 'active' : null} 
-								onClick={this.goToSlide.bind(this, index)}>{index + 1}</a>
-							))}
+							{this.state.indicators ? 
+								<div className="indicators">
+									{this.state.slides.map((slide, index) => (
+										<a href="#" key={index} className={this.state.currentSlide == index ? 'active' : null} 
+										onClick={this.goToSlide.bind(this, index)}>
+											{this.state.currentSlide == index ?
+												<i className="fa fa-circle" aria-hidden="true"></i>
+											:
+												<i className="fa fa-circle-thin" aria-hidden="true"></i>
+											}
+										</a>
+									))}
+								</div>
+							: null }
 						</div>
-					: null }
-				</div>
 
-				{this.state.controls ? 
-					<div>
-						<button className="controls" onClick={this.previousSlide}>Previous</button>
-						{this.state.autoPlay ? 
-							<button className="controls" onClick={this.pauseSlideshow}>Pause</button>
-						: 
-							<button className="controls" onClick={this.playSlideshow}>Play</button>
-						}
-						<button className="controls" onClick={this.nextSlide}>Next</button>
+						{this.state.controls ? 
+							<div className="controls-wrapper">
+								<a href="#" className="controls" onClick={this.previousSlide}>
+									<i className="fa fa-backward" aria-hidden="true"></i>
+								</a>
+								{this.state.autoPlay ? 
+									<a href="#" className="controls" onClick={this.pauseSlideshow}>
+										<i className="fa fa-pause" aria-hidden="true"></i>
+									</a>
+								: 
+									<a href="#" className="controls" onClick={this.playSlideshow}>
+										<i className="fa fa-play" aria-hidden="true"></i>
+									</a>
+								}
+								<a href="#" className="controls" onClick={this.previousSlide}>
+									<i className="fa fa-forward" aria-hidden="true"></i>
+								</a>
+							</div>
+						: null }
 					</div>
 				: null }
 			</section>

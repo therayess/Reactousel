@@ -1,18 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
-import connector from './App';
 
 class Header extends React.Component {
     render() {
         return (
             <header>
-                <div>
-                    <Link to='/'>Reactousel</Link>
-                    <div>By Ammar Rayess</div>
-                </div>
+                <Link to='/' className="site-logo">Reactousel</Link>
+                <div className="author">By Ammar Rayess</div>
             </header>
         )
     }
 }
 
-module.exports = connector(Header);
+module.exports = Header;
