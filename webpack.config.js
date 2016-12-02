@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('css/main.css');
-var autoprefixer = require('autoprefixer');
  
 var config = {
   context: path.join(__dirname, 'client/js'),
@@ -38,8 +37,7 @@ var config = {
         loader: extractCSS.extract(['css','sass']) 
       },
       { test: /\.css$/, loader: "style-loader!css-loader!postcss-loader" }
-    ],
-    postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
+    ]
   },
   resolveLoader: {
     root: [
