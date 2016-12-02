@@ -1,4 +1,4 @@
 var configs = {};
-configs.applicationPort = 3000;
+configs.applicationPort = (process.env.PORT || 8080);
 
 module.exports = configs;
