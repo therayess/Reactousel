@@ -22,6 +22,7 @@ Redux handles dispatching the api call on the frontend and initializing the app 
 Carousel Settings
 ---
 I added some basic settings for the carousel, nothing fancy, here's an example:
+```HTML
 <Reactousel data={dataArray} 
 	autoPlay={true} 
 	pauseOnHover={true} 
@@ -29,6 +30,7 @@ I added some basic settings for the carousel, nothing fancy, here's an example:
 	controls={true}
 	indicators={true}
 	interval={4000} />
+```
 
 - data: an array of objects that holds what needs to be displayed
 - autoPlay: enable slideshow autoplay, true by default
