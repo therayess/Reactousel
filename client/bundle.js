@@ -32152,6 +32152,7 @@
 		function Reactousel(props) {
 			_classCallCheck(this, Reactousel);
 
+			// default settins and initial state
 			var _this = _possibleConstructorReturn(this, (Reactousel.__proto__ || Object.getPrototypeOf(Reactousel)).call(this, props));
 
 			_this.state = {
@@ -32166,6 +32167,7 @@
 				autoPlayTimer: props.interval || 5000
 			};
 
+			// functions context bindings
 			_this.nextSlide = _this.nextSlide.bind(_this);
 			_this.previousSlide = _this.previousSlide.bind(_this);
 			_this.goToSlide = _this.goToSlide.bind(_this);
@@ -32179,6 +32181,8 @@
 		_createClass(Reactousel, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
+				// Check if the initial carousel functions are enabled and run them
+
 				if (this.state.autoPlay) {
 					this.playSlideshow();
 				}
@@ -32194,30 +32198,36 @@
 		}, {
 			key: 'nextSlide',
 			value: function nextSlide(e) {
+				// Whatever the current slide is + 1
 				this.goToSlide(this.state.currentSlide + 1, e);
 			}
 		}, {
 			key: 'previousSlide',
 			value: function previousSlide(e) {
+				// Whatever the current slide is - 1
 				this.goToSlide(this.state.currentSlide - 1, e);
 			}
 		}, {
 			key: 'goToSlide',
 			value: function goToSlide(index, e) {
+				// I reset the interval on each slide change
 				if (e && e.type == 'click') {
 					this.resetInterval();
 				}
 
+				// By setting the state of the currentSlide to the targeted one, the template is re-rendered and new slide activated
 				this.setState({ currentSlide: (index + this.state.slides.length) % this.state.slides.length });
 			}
 		}, {
 			key: 'playSlideshow',
 			value: function playSlideshow() {
+				// I set an interval object inside the slideInterval state var, this enables the slide show and controlling it
 				this.setState({ slideInterval: setInterval(this.nextSlide, this.state.autoPlayTimer), autoPlay: true });
 			}
 		}, {
 			key: 'pauseSlideshow',
 			value: function pauseSlideshow() {
+				// Pause the slide show by clearing the interval and reset the state vars accordingly
 				clearInterval(this.state.slideInterval);
 
 				this.setState({ slideInterval: null, autoPlay: false });
@@ -32225,6 +32235,7 @@
 		}, {
 			key: 'resetInterval',
 			value: function resetInterval() {
+				// Basically, clearing and setting a new interval
 				this.pauseSlideshow();
 				this.playSlideshow();
 			}
@@ -32234,6 +32245,7 @@
 				var slides = document.querySelectorAll('.reactousel .slide'),
 				    self = this;
 
+				// Pause on hover is basically adding event listeners that will pause on mouse over and play on mouse out
 				slides.forEach(function (slide) {
 					slide.onmouseover = function (e) {
 						self.pauseSlideshow();
@@ -32248,6 +32260,7 @@
 			value: function useKeyboard() {
 				var self = this;
 
+				// Another event listener for key down events, we need left and right arrow keys
 				document.onkeydown = function (e) {
 					var charCode = e.keyCode;
 
@@ -32263,6 +32276,12 @@
 		}, {
 			key: 'setClassName',
 			value: function setClassName(index) {
+				// This is how i do the sliding right and left with css3 animations, basically, all slides
+				// to the right of the current one are given a left direction slide class, and the opposite for
+				// the slides on the left of the curret one, the curret one is given the showing class, the class
+				// state is updated according to this logic and by switching those classes and the css3 relevant 
+				// transition animations, the slide effect is achieved.
+
 				var classString = 'slide';
 
 				if (this.state.currentSlide == index) {
