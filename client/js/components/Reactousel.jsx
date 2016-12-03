@@ -56,7 +56,7 @@ class Reactousel extends React.Component {
 		// is used in for both autoplay slide event and next/previous/indicators click
 		// events, so on autoplay slide event resetInterval should not happen, and it should work
 		// only in the case of a button click, hence, the check below.
-		if (e && e.type == 'click' || e && e.type =='keydown') {
+		if (e && e.type == 'click') {
 			this.resetInterval();
 		}
 
@@ -84,9 +84,9 @@ class Reactousel extends React.Component {
 
 		// Pause on hover is basically adding event listeners that will pause on mouse over and play on mouse out
 		for (let slide of slides) {
-			slide.onmouseover = function(e) { self.pauseSlideshow(); }
-			slide.onmouseout = function(e) { self.playSlideshow(); }
-		};
+			slide.onmouseenter = function(e) { self.pauseSlideshow(); }
+			slide.onmouseleave = function(e) { self.playSlideshow(); }
+		}
 	}
 	useKeyboard() {
 		let self = this;

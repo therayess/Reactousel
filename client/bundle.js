@@ -29969,7 +29969,7 @@
 /* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
+	var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -31765,7 +31765,7 @@
 				// is used in for both autoplay slide event and next/previous/indicators click
 				// events, so on autoplay slide event resetInterval should not happen, and it should work
 				// only in the case of a button click, hence, the check below.
-				if (e && e.type == 'click' || e && e.type == 'keydown') {
+				if (e && e.type == 'click') {
 					this.resetInterval();
 				}
 
@@ -31808,10 +31808,10 @@
 					for (var _iterator = slides[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 						var slide = _step.value;
 
-						slide.onmouseover = function (e) {
+						slide.onmouseenter = function (e) {
 							self.pauseSlideshow();
 						};
-						slide.onmouseout = function (e) {
+						slide.onmouseleave = function (e) {
 							self.playSlideshow();
 						};
 					}
@@ -31829,8 +31829,6 @@
 						}
 					}
 				}
-
-				;
 			}
 		}, {
 			key: 'useKeyboard',
