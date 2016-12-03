@@ -32246,14 +32246,37 @@
 				    self = this;
 
 				// Pause on hover is basically adding event listeners that will pause on mouse over and play on mouse out
-				slides.forEach(function (slide) {
-					slide.onmouseover = function (e) {
-						self.pauseSlideshow();
-					};
-					slide.onmouseout = function (e) {
-						self.playSlideshow();
-					};
-				});
+				var _iteratorNormalCompletion = true;
+				var _didIteratorError = false;
+				var _iteratorError = undefined;
+
+				try {
+					for (var _iterator = slides[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+						var slide = _step.value;
+
+						slide.onmouseover = function (e) {
+							self.pauseSlideshow();
+						};
+						slide.onmouseout = function (e) {
+							self.playSlideshow();
+						};
+					}
+				} catch (err) {
+					_didIteratorError = true;
+					_iteratorError = err;
+				} finally {
+					try {
+						if (!_iteratorNormalCompletion && _iterator.return) {
+							_iterator.return();
+						}
+					} finally {
+						if (_didIteratorError) {
+							throw _iteratorError;
+						}
+					}
+				}
+
+				;
 			}
 		}, {
 			key: 'useKeyboard',

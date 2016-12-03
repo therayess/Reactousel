@@ -79,10 +79,10 @@ class Reactousel extends React.Component {
 			self = this;
 
 		// Pause on hover is basically adding event listeners that will pause on mouse over and play on mouse out
-		slides.forEach(function(slide) {
+		for (let slide of slides) {
 			slide.onmouseover = function(e) { self.pauseSlideshow(); }
 			slide.onmouseout = function(e) { self.playSlideshow(); }
-		});
+		};
 	}
 	useKeyboard() {
 		let self = this;
