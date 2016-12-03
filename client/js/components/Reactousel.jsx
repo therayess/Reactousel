@@ -51,8 +51,12 @@ class Reactousel extends React.Component {
 		this.goToSlide(this.state.currentSlide - 1, e);
 	}
 	goToSlide(index, e) {
-		// I reset the interval on each slide change
-		if (e && e.type == 'click') {
+		// I reset the interval on each slide change.
+		// The check for click event is needed because this function
+		// is used in for both autoplay slide event and next/previous/indicators click
+		// events, so on autoplay slide event resetInterval should not happen, and it should work
+		// only in the case of a button click, hence, the check below.
+		if (e && e.type == 'click' || e && e.type =='keydown') {
 			this.resetInterval();
 		}
 
@@ -92,11 +96,11 @@ class Reactousel extends React.Component {
 		    let charCode = e.keyCode;
 
 		    if (charCode == 37) {
-		        self.previousSlide({ type: 'click' });
+		        self.previousSlide(e);
 		    }
 
 		    if (charCode == 39) {
-		    	self.nextSlide({ type: 'click' });
+		    	self.nextSlide(e);
 		    }
 		};
 	}
@@ -132,7 +136,7 @@ class Reactousel extends React.Component {
 							{this.state.indicators ? 
 								<div className="indicators">
 									{this.state.slides.map((slide, index) => (
-										<a href="#" key={index} className={this.state.currentSlide == index ? 'active' : null} 
+										<a key={index} className={this.state.currentSlide == index ? 'active' : null} 
 										onClick={this.goToSlide.bind(this, index)}>
 											{this.state.currentSlide == index ?
 												<i className="fa fa-circle" aria-hidden="true"></i>
@@ -147,19 +151,19 @@ class Reactousel extends React.Component {
 
 						{this.state.controls ? 
 							<div className="controls-wrapper">
-								<a href="#" className="controls" onClick={this.previousSlide}>
+								<a className="controls" onClick={this.previousSlide}>
 									<i className="fa fa-backward" aria-hidden="true"></i>
 								</a>
 								{this.state.autoPlay ? 
-									<a href="#" className="controls" onClick={this.pauseSlideshow}>
+									<a className="controls" onClick={this.pauseSlideshow}>
 										<i className="fa fa-pause" aria-hidden="true"></i>
 									</a>
 								: 
-									<a href="#" className="controls" onClick={this.playSlideshow}>
+									<a className="controls" onClick={this.playSlideshow}>
 										<i className="fa fa-play" aria-hidden="true"></i>
 									</a>
 								}
-								<a href="#" className="controls" onClick={this.previousSlide}>
+								<a className="controls" onClick={this.nextSlide}>
 									<i className="fa fa-forward" aria-hidden="true"></i>
 								</a>
 							</div>
