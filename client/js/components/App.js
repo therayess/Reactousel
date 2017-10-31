@@ -4,7 +4,7 @@ import * as actionCreators from '../actions/actionCreators';
 
 function mapStateToProps(state) {
 	return {
-		brokers: state.brokers
+		data: state.data
 	}
 }
 

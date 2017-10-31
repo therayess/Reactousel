@@ -1,7 +1,7 @@
-var brokers = require('../controllers/brokers');
+var data = require('../controllers/data');
 
 var routesAPI = function(app){
-	app.get('/api/brokers', brokers.get);
+	app.get('/api/data', data.get);
 }
 
 

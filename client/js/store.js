@@ -9,7 +9,7 @@ import rootReducer from './reducers/index';
 
 // create an object for the default data
 const initialState = {
-	brokers: []
+	data: []
 };
 
 const store = createStore(rootReducer, initialState, compose(

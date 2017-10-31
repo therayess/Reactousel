@@ -3,50 +3,17 @@
 	height: 450px;
 }
 
-.slide {
+.heading {
 	text-align: center;
-	padding: 30px;
-	.logo {
-		margin: 0 auto;
-	}
-	.heading {
-		margin: 15px 0;
-		a {
-			color: #fff;
-			font-size: 20px;
-			font-weight: bold;
-			text-decoration: none;
-			&:hover {
-				color: #90caf9;
-			}
-		}
-		small {
-			display: block;
-			font-size: 12px;
-			margin-top: 5px;
-			span {
-				display: inline-block;
-				margin: 0 10px;
-			}
-		}
-	}
-	.details {
-		margin-top: 15px;
-		.meta {
-			display: inline-block;
-			width: 100px;
-			border: 1px solid #fff;
-			padding: 5px;
-			margin: 0 5px;
-			i.fa {
-				display: block;
-				font-size: 28px;
-				margin-bottom: 5px;
-			}
-			.unit-type {
-				display: block;
-				font-size: 12px;
-			}
-		}
+	font-size: 24px;
+}
+
+.single-slide {
+	width: 25%;
+	height: 100%;
+	float: left;
+	img {
+		width: 100%;
+		height: 100%;
 	}
 }

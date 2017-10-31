@@ -1,9 +1,9 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-export function getBrokersAction(opts = {}) {
+export function getDataAction(opts = {}) {
 	return function(dispatch, getState) {
-	    let url = "/api/brokers";
+	    let url = "/api/data";
 
 	    let	request = new Request(url, {
 				method: 'GET',
@@ -22,7 +22,7 @@ export function getBrokersAction(opts = {}) {
 				console.log(jsonResult.error);
 			}
 			else {
-				dispatch(getBrokers(jsonResult.data));
+				dispatch(getData(jsonResult));
 			}
 		}).catch(function(err) {
 			console.log(err);
@@ -30,9 +30,9 @@ export function getBrokersAction(opts = {}) {
 	}
 }
 
-export function getBrokers(brokers) {
+export function getData(data) {
 	return {
-		type: 'GET_BROKERS',
-		brokers
+		type: 'GET_DATA',
+		data
 	}
 }

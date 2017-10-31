@@ -7,9 +7,9 @@ class Landing extends React.Component {
 		return (
 			<section>
 				<div id="carousel-1">
-					<Reactousel data={this.props.brokers} 
-								autoPlay={true} 
-								pauseOnHover={true} 
+					<Reactousel data={this.props.data} 
+								autoPlay={false} 
+								pauseOnHover={false} 
 								useKeyboard={true} 
 								controls={true}
 								indicators={true}

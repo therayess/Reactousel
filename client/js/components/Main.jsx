@@ -7,20 +7,20 @@ class Main extends React.Component {
 		super(props);
 
 		this.state = {
-			brokers: []
+			data: []
 		}
 	}
 	componentWillMount() {
 		// On site load, get the data from the API 
-		this.props.getBrokersAction();
+		this.props.getDataAction();
 	}
 	componentWillReceiveProps(nextProps) {
 		// I set a state here to load main site section when data is fetched and set
-		this.setState({ brokers: nextProps.brokers });
+		this.setState({ data: nextProps.data });
 	}
 	componentDidUpdate(prevProps) {
 		// Simple preloader to make things neat
-		if (this.props.brokers.length > 0) {
+		if (this.props.data.length > 0) {
 			document.getElementById('preloader').remove();
 	    }
 	}
@@ -36,7 +36,7 @@ class Main extends React.Component {
 				<Header />
 				
 				<main>
-					{this.state.brokers.length > 0 ? <div>{React.cloneElement(this.props.children, this.props)}</div> : null }
+					{this.state.data.length > 0 ? <div>{React.cloneElement(this.props.children, this.props)}</div> : null }
 				</main>
 			</div>
 		)
